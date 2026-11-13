@@ -1,0 +1,89 @@
+[solution]
+id = "com.facthory.automated_radiology_protocol_labeling"
+title = "Automated Radiology Protocol Labeling"
+version = "0.1.0"
+contract = "0-draft"
+licence = "Apache-2.0"
+health_related = true
+
+# Sample tables. All synthetic, generated for this repository (CC0-1.0); see data/README.md.
+[[dataset]]
+name = "notes_raw"
+path = "data/sample/notes_raw.parquet"
+synthetic = true
+licence = "CC0-1.0"
+
+[[dataset]]
+name = "notes_test_raw"
+path = "data/sample/notes_test_raw.parquet"
+synthetic = true
+licence = "CC0-1.0"
+
+[[dataset]]
+name = "label_dataset"
+path = "data/sample/label_dataset.parquet"
+synthetic = true
+licence = "CC0-1.0"
+
+[[dataset]]
+name = "predictions"
+path = "data/sample/predictions.parquet"
+synthetic = true
+licence = "CC0-1.0"
+
+[[dataset]]
+name = "evaluation_summary"
+path = "data/sample/evaluation_summary.parquet"
+synthetic = true
+licence = "CC0-1.0"
+
+[[dataset]]
+name = "label_metrics"
+path = "data/sample/label_metrics.parquet"
+synthetic = true
+licence = "CC0-1.0"
+
+[[dataset]]
+name = "confusion_matrix"
+path = "data/sample/confusion_matrix.parquet"
+synthetic = true
+licence = "CC0-1.0"
+
+[[dataset]]
+name = "label_distribution"
+path = "data/sample/label_distribution.parquet"
+synthetic = true
+licence = "CC0-1.0"
+
+# label_protocols takes a TextModel as a third argument; Facthory provides model
+# access. The repository ships a recorded stand-in (text/recorded.py).
+[[job]]
+name = "prepare_notes"
+entry = "automated_radiology_protocol_labeling.jobs.prepare_notes:run"
+mode = "call"
+inputs = ["notes_raw"]
+outputs = ["label_dataset"]
+
+[[job]]
+name = "label_protocols"
+entry = "automated_radiology_protocol_labeling.jobs.label_protocols:run"
+mode = "job"
+inputs = ["notes_test_raw", "label_dataset"]
+outputs = ["predictions", "rejected_labels"]
+
+[[job]]
+name = "evaluate_predictions"
+entry = "automated_radiology_protocol_labeling.jobs.evaluate_predictions:run"
+mode = "call"
+inputs = ["predictions", "notes_test_raw"]
+outputs = ["evaluation_summary", "label_metrics", "confusion_matrix"]
+
+[[job]]
+name = "label_summary"
+entry = "automated_radiology_protocol_labeling.jobs.label_summary:run"
+mode = "call"
+inputs = ["label_dataset"]
+outputs = ["label_distribution"]
+
+[skill]
+instructions = "skills/automated_radiology_protocol_labeling.md"

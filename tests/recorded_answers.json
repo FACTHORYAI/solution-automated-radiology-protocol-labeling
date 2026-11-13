@@ -1,0 +1,24 @@
+{
+  "label_protocols": {
+    "Notes: 58M with sudden tearing chest pain radiating to the back. History: Prior aortic root repair.": "{\"label\": \"CTA Aortic Dissection\", \"confidence\": 0.93}",
+    "Notes: 47F with severe chest pain and a family history of aortic dissection. History: Long-standing hypertension.": "{\"label\": \"CTA Aortic Dissection\", \"confidence\": 0.93}",
+    "Notes: 52F with painless gross hematuria. History: Urothelial carcinoma under surveillance.": "{\"label\": \"CT Urography\", \"confidence\": 0.93}",
+    "Notes: 61M with microscopic hematuria and a history of bladder cancer. History: Bladder cancer status post resection.": "{\"label\": \"CT Urography\", \"confidence\": 0.93}",
+    "Notes: 34M with acute flank pain radiating to the groin. History: Known calcium oxalate stones.": "{\"label\": \"Renal Stone Protocol\", \"confidence\": 0.93}",
+    "Notes: 29F with renal colic and vomiting. History: Prior kidney stones.": "{\"label\": \"Renal Stone Protocol\", \"confidence\": 0.93}",
+    "Notes: 37M with neck pain and tingling in both arms after a fall. History: No prior cervical surgery.": "{\"label\": \"C-Spine(Bone)\", \"confidence\": 0.93}",
+    "Notes: 52F with whiplash injury and cervical pain. History: Motor vehicle accident last week.": "{\"label\": \"C-Spine(Bone)\", \"confidence\": 0.93}",
+    "Notes: 55M with low back pain radiating down the left leg. History: Physiotherapy for two months.": "{\"label\": \"L-Spine\", \"confidence\": 0.93}",
+    "Notes: 42F with chronic lumbar pain and morning stiffness. History: Degenerative disc disease.": "{\"label\": \"L-Spine\", \"confidence\": 0.93}",
+    "Notes: 31F with sinus congestion and frontal headaches. History: Allergic rhinitis.": "{\"label\": \"Routine Sinus\", \"confidence\": 0.93}",
+    "Notes: 46M with chronic sinusitis and facial pressure. History: Chronic sinus problems with headaches.": "{\"label\": \"Routine Sinus\", \"confidence\": 0.93}",
+    "Notes: 49F with sudden dyspnea and pleuritic chest pain. History: Postoperative day five.": "{\"label\": \"Pulmonary Embolus\", \"confidence\": 0.93}",
+    "Notes: 62M with hypoxia, tachycardia and elevated D-dimer. History: Recent long-haul flight.": "{\"label\": \"CTA Aortic Dissection\", \"confidence\": 0.61}",
+    "Notes: 68M with sudden onset right-sided weakness. History: Prior transient ischaemic attack.": "{\"label\": \"CTA Brain\", \"confidence\": 0.93}",
+    "Notes: 72F with acute aphasia and facial droop. History: Atrial fibrillation, not anticoagulated.": "{\"label\": \"CTA Brain\", \"confidence\": 0.93}",
+    "Notes: 44F with right upper quadrant pain and fever. History: Colorectal cancer follow-up.": "{\"label\": \"CT Abdomen\", \"confidence\": 0.93}",
+    "Notes: 58M with abdominal pain and suspected pancreatitis. History: Gallstones on ultrasound.": "{\"label\": \"Renal Stone Protocol\", \"confidence\": 0.61}",
+    "Notes: 70M with acute stroke symptoms within the treatment window. History: On anticoagulation, last dose unclear.": "{\"label\": \"Brain Perfusion\", \"confidence\": 0.93}",
+    "Notes: 66F with middle cerebral artery territory deficit. History: Hypertension and diabetes.": "{\"label\": \"Brain Perfusion\", \"confidence\": 0.93}"
+  }
+}

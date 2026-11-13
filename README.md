@@ -30,3 +30,33 @@ This is software for research and analytics. It is not a medical device and must
 ## Licence
 
 Apache-2.0. See [LICENSE](LICENSE). "Facthory" and the Facthory logo are trademarks of their owner and are not covered by that licence.
+
+## Jobs
+
+| Job | What it does | Inputs | Outputs |
+| --- | --- | --- | --- |
+| `prepare_notes` | Builds the training set: deduplicates notes and drops protocols too rare to learn | `notes_raw` | `label_dataset` |
+| `label_protocols` | Predicts the radiology protocol each test note calls for, with confidence | `notes_test_raw`, `label_dataset` | `predictions`, `rejected_labels` |
+| `evaluate_predictions` | Accuracy, per-protocol precision/recall/F1 and the confusion matrix | `predictions`, `notes_test_raw` | `evaluation_summary`, `label_metrics`, `confusion_matrix` |
+| `label_summary` | Notes per protocol in the training set | `label_dataset` | `label_distribution` |
+
+`label_protocols` takes a `TextModel` (see `src/automated_radiology_protocol_labeling/text/interface.py`) as a third argument; Facthory provides model access, and a prediction is validated against the known protocol vocabulary before it becomes a row — an unknown protocol goes to `rejected_labels` with the reason. Named measures live in `metrics/`.
+
+## Data
+
+The sample tables in `data/sample/` are synthetic and openly licensed (CC0-1.0): `notes_raw`, `notes_test_raw`, `label_dataset`, `predictions`, `evaluation_summary`, `label_metrics`, `confusion_matrix` and `label_distribution`. See [data/README.md](data/README.md) for one row per file with origin and licence. No real patient data.
+
+## Run it locally
+
+```
+uv sync
+uv run python -m automated_radiology_protocol_labeling prepare_notes --min-label-count 2
+uv run python -m automated_radiology_protocol_labeling label_protocols --model-answers tests/recorded_answers.json
+uv run python -m automated_radiology_protocol_labeling evaluate_predictions
+uv run pytest
+```
+
+`uv run python -m automated_radiology_protocol_labeling --help` lists every job; each job has its own `--help`. `label_protocols` additionally takes `--model-answers <file>` with a recorded-answers JSON (see `tests/recorded_answers.json`), since it reads notes through a model behind `text.interface`; the other jobs run without any model.
+
+A predicted protocol is a scheduling suggestion for a radiologist to review, not an order: `label_metrics` shows precision, recall and F1 per protocol, and `confusion_matrix` shows which protocols get mixed up.
+
