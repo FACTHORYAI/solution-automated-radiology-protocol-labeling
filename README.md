@@ -23,13 +23,19 @@ Label radiology examination protocols from clinical notes automatically, in Fact
 - Its results are tables and pages in your workspace, so you can query them, chart them and ask the agent about them, inside your permissions.
 - Sample data in this repository is synthetic or openly licensed. No real patient data.
 
+## Background: adapting a model by fine-tuning
+
+![Two diagrams side by side. LoRA: the inputs go through two small trained matrices Wa and Wb and, in parallel, through frozen pretrained weights kept in 16-bit floating point; the two paths are added to give the embedding, h = Wx + ΔWx. QLoRA: the same, with the frozen pretrained weights quantized to 4-bit integers.](docs/images/lora-and-qlora.png)
+
+A way to adapt a large model to labelled notes is to fine-tune it with LoRA, which trains only two small matrices beside the frozen pretrained weights, or with QLoRA, which also stores the frozen weights as 4-bit integers to save memory. This is background only: this repository does not fine-tune a model. It asks a model, through the interface in `text/`, to choose a protocol from the known list, and it does not train on the labelled notes.
+
 ## Not for clinical use
 
 This is software for research and analytics. It is not a medical device and must not be used to diagnose or treat a patient. Results can be wrong; a qualified person reviews them.
 
 ## Licence
 
-Apache-2.0. See [LICENSE](LICENSE). "Facthory" and the Facthory logo are trademarks of their owner and are not covered by that licence.
+Apache-2.0. See [LICENSE](LICENSE). "Facthory" and the Facthory logo are trademarks of their owner and are not covered by that licence. This includes the logo shown in the image under `docs/images/`.
 
 ## Jobs
 
