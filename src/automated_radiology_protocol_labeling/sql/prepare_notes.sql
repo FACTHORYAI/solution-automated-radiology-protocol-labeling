@@ -1,5 +1,4 @@
--- One row per distinct note, keeping only labels that occur at least $min_label_count
--- times (the training-data filter of the original pipeline used 50).
+-- One row per distinct note, keeping only labels that occur at least $min_label_count times.
 WITH counts AS (
     SELECT label, count(*) AS label_notes
     FROM notes_raw

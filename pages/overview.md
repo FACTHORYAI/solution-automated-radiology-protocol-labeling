@@ -4,7 +4,7 @@ Label radiology examination protocols from clinical notes, and measure how well 
 
 ## Start here
 
-1. Look at the sample tables in `data/sample` (synthetic): `notes_raw` and `notes_test_raw` hold labelled and held-out notes across ten protocols.
+1. Look at the sample tables in `data/sample` (synthetic): `notes_raw` and `notes_test_raw` hold 200 labelled and 100 held-out notes across ten protocols.
 2. Build the training set with `prepare_notes` (deduplicates notes and drops protocols too rare to learn), then label the test notes with `label_protocols`.
 3. Judge the result:
 
@@ -20,6 +20,7 @@ Named measures for prediction coverage and protocol count live in `metrics/`.
 ## Notes
 
 - The sample data is synthetic; real patient notes never enter this project.
+- The predictions in the sample are invented to exercise the metrics, so their accuracy says nothing about a labelling method.
 - `label_protocols` needs a text model behind `automated_radiology_protocol_labeling.text.interface`; a recorded stand-in exists for tests and demos. The other jobs run without any model.
 - A predicted protocol is a scheduling suggestion for a radiologist to review, not an order.
 - Results are for research and analytics, not clinical decisions.
